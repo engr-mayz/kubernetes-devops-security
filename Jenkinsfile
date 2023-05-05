@@ -10,10 +10,12 @@ pipeline {
         }   
   stage('Docker build and Push') {
     steps {
+      docker.withRegistry("", docker-hub){
         sh "printenv"
         sh "docker build -t mayowa2022/numeric-app:$GIT_COMMIT ."
         sh "docker push mayowa2022/numeric-app:$GIT_COMMIT"
             }
+          }
         }   
     }
 }
